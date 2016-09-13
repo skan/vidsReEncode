@@ -9,6 +9,7 @@
 if [ $# -lt 1 ] ; then
     echo "Usage: $0 vidsToConvert.txt"
     echo output is : convertVids.bat²:w
+    echo "ffmpeg.exe -i VI_1835.MOV -c:v libx264 -preset veryfast VI_1835.mkv"
     exit 0
 fi
 
@@ -20,10 +21,12 @@ outputVid=""
 	
 
 while read -r inputVid ; do
-	echo $inputVid
+	#echo $inputVid
 	outputVid="${inputVid%.*}"
 	outputVid=$outputVid.mkv
-	echo $outputVid
+	#echo $outputVid
+	echo $FFMPEG -i $inputVid -c:v libx264 -preset veryfast $outputVid
+
 done < "$INPUT_FILE"
 
 
@@ -58,6 +61,6 @@ if [[ $debug == 1 ]]; then
 	done
 
 	rm temp_formatted.csv
-
+fi
 echo Done!
 exit 1
