@@ -16,6 +16,7 @@ INPUT_FILE=$1
 FFMPEG="ffmpeg.exe"
 inputVid=""
 outputVid=""
+vidsToDeleteDir="vidsToDelete\."
 	
 
 while read -r inputVid ; do
@@ -24,7 +25,7 @@ while read -r inputVid ; do
 	outputVid=$outputVid.mkv
 	#echo $outputVid
 	echo $FFMPEG -i \"$inputVid\" -c:v libx264 -preset veryfast \"$outputVid\" 
-	echo DEL \"$inputVid\" >> vidsToDelete.bat
+	echo MOVE \"$inputVid\" \"$vidsToDeleteDir\" >> moveVids2Del.bat
 
 
 done < "$INPUT_FILE"
